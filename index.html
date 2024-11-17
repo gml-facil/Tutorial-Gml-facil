@@ -1,0 +1,651 @@
+<html><head><base href="."><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TutorialHub - Aprende Paso a Paso</title><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script><style>
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --bg-light: #ecf0f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.search-bar {
+    max-width: 600px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.featured-tutorials {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tutorial-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+}
+
+.tutorial-img {
+    width: 100%;
+    height: 200px;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.tutorial-content {
+    padding: 1.5rem;
+}
+
+.tutorial-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.tutorial-meta {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #2980b9;
+}
+
+.upload-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.upload-container {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.file-input-container {
+    border: 2px dashed var(--accent-color);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-input-container:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.file-input-container i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-group select, .form-group input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.upload-button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #2980b9;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.rutinas-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rutina-option {
+    padding: 1rem;
+    background-color: var(--bg-light);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rutina-option:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.sub-options {
+    display: none;
+}
+
+.rutina-option:hover .sub-options {
+    display: block;
+}
+
+.sub-options .rutina-option {
+    margin-top: 5px;
+    background-color: var(--bg-light);
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+}
+
+.sub-options .rutina-option:hover {
+    background-color: var(--bg-light);
+    color: var(--text-color);
+}
+
+.rutina-option:hover > .sub-options .rutina-option {
+    color: var(--text-color);
+}
+</style></head><body>
+    <header class="header">
+        <h1>TutorialHub</h1>
+        <p>Aprende nuevas habilidades paso a paso</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar tutoriales...">
+        </div>
+    </header>
+
+    <section class="categories">
+        <div class="category-card">
+            <i class="fas fa-download category-icon"></i>
+            <h2>Rutinas</h2>
+            <p>Descargar y Cargar Rutinas</p>
+            <a href="https://tutorialhub.com/rutinas" class="cta-button">Explorar</a>
+        </div>
+        <div class="category-card">
+            <i class="fas fa-building category-icon"></i>
+            <h2>SEDE Catastral</h2>
+            <p>Unir, Dividir, Reparcelar, Subsanar</p>
+            <a href="https://tutorialhub.com/sede-catastral" class="cta-button">Explorar</a>
+        </div>
+        <div class="category-card">
+            <i class="fas fa-code category-icon"></i>
+            <h2>Generar GML</h2>
+            <p>GMLE y GML</p>
+            <a href="https://tutorialhub.com/fotografia" class="cta-button">Explorar</a>
+        </div>
+    </section>
+
+    <section class="upload-section">
+        <div class="upload-container">
+            <h2>Subir Video Tutorial</h2>
+            <form class="upload-form" id="uploadForm">
+                <div class="file-input-container" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Arrastra tu video aquí o haz clic para seleccionar</p>
+                    <input type="file" id="videoFile" accept="video/*" style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="title">Título del Video</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="category" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="rutinas">Rutinas</option>
+                        <option value="sede">SEDE Catastral</option>
+                        <option value="gml">Generar GML</option>
+                    </select>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <button type="submit" class="upload-button">Subir Video</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="rutinasModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Rutinas</h2>
+            <div class="rutinas-options">
+                <div class="rutina-option" data-url="https://tutorialhub.com/rutinas/descargar">
+                    Descargar Rutinas de Chapulin Catastral
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/rutinas/cargar">
+                    Cargar Rutinas en AutoCAD
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/rutinas/aplicar">
+                    Aplicar Rutinas en Autocad
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sedeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>SEDE Catastral</h2>
+            <div class="sede-options">
+                <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/buscar-inmueble">
+                    Buscar un inmueble
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/descargar-cartografia">
+                    Descargar Cartografía Catastral
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/identificar-huso-geografico">
+                    Identificar Huso Geográfico
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/editar">
+                    Editar Cartografía desde la SEDE
+                    <div class="sub-options" style="margin-left: 20px; margin-top: 10px;">
+                        <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/unir">
+                            Unir
+                        </div>
+                        <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/dividir">
+                            Dividir
+                        </div>
+                        <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/reparcelar">
+                            Reparcelar
+                        </div>
+                        <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/subsanar">
+                            Subsanar
+                        </div>
+                    </div>
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/validar-gml">
+                    Validar GML
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/sede-catastral/validar-gmle">
+                    Validar GMLE
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gmlModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Generar GML</h2>
+            <div class="gml-options">
+                <div class="rutina-option" data-url="https://tutorialhub.com/gml/parcela">
+                    GML (Parcela)
+                </div>
+                <div class="rutina-option" data-url="https://tutorialhub.com/gml/edificio">
+                    GMLE (Huella Edificio)
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('videoFile');
+const uploadForm = document.getElementById('uploadForm');
+const progressBar = document.getElementById('progressBar');
+const progressBarFill = document.querySelector('.progress-bar-fill');
+
+dropZone.addEventListener('click', () => {
+    fileInput.click();
+});
+
+dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.style.backgroundColor = '';
+});
+
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.style.backgroundColor = '';
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        fileInput.files = files;
+        updateFileName(files[0].name);
+    }
+});
+
+fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+        updateFileName(fileInput.files[0].name);
+    }
+});
+
+function updateFileName(fileName) {
+    const fileNameDisplay = dropZone.querySelector('p');
+    fileNameDisplay.textContent = `Archivo seleccionado: ${fileName}`;
+}
+
+uploadForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Simular subida
+    progressBar.style.display = 'block';
+    let progress = 0;
+    
+    const interval = setInterval(() => {
+        progress += 5;
+        progressBarFill.style.width = `${progress}%`;
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+                alert('Video subido exitosamente');
+                uploadForm.reset();
+                progressBar.style.display = 'none';
+                progressBarFill.style.width = '0%';
+                dropZone.querySelector('p').textContent = 'Arrastra tu video aquí o haz clic para seleccionar';
+            }, 500);
+        }
+    }, 200);
+});
+
+// Mantener el código de búsqueda existente
+document.querySelector('.search-bar input').addEventListener('keyup', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const tutorialCards = document.querySelectorAll('.tutorial-card');
+    
+    tutorialCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+
+// Mantener la animación de scroll existente
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.category-card, .upload-container').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.5s ease-out';
+    observer.observe(card);
+});
+
+const rutinasExplorarBtn = document.querySelector('.category-card:first-child .cta-button');
+const rutinasModal = document.getElementById('rutinasModal');
+const closeModal = document.querySelector('.close-modal');
+const rutinaOptions = document.querySelectorAll('.rutina-option');
+
+// Prevent default link behavior and show modal
+rutinasExplorarBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    rutinasModal.style.display = 'block';
+});
+
+// Close modal when clicking X
+closeModal.addEventListener('click', () => {
+    rutinasModal.style.display = 'none';
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === rutinasModal) {
+        rutinasModal.style.display = 'none';
+    }
+});
+
+const sedeExplorarBtn = document.querySelector('.category-card:nth-child(2) .cta-button');
+const sedeModal = document.getElementById('sedeModal');
+const sedeCloseModal = sedeModal.querySelector('.close-modal');
+const sedeOptions = sedeModal.querySelectorAll('.rutina-option');
+
+// Show modal when clicking Explorar
+sedeExplorarBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    sedeModal.style.display = 'block';
+});
+
+// Close modal when clicking X
+sedeCloseModal.addEventListener('click', () => {
+    sedeModal.style.display = 'none';
+});
+
+// Handle option clicks
+sedeOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        const url = option.dataset.url;
+        window.location.href = url;
+    });
+});
+
+// Close modal when clicking outside (add to existing window click handler)
+window.addEventListener('click', (e) => {
+    if (e.target === rutinasModal) {
+        rutinasModal.style.display = 'none';
+    }
+    if (e.target === sedeModal) {
+        sedeModal.style.display = 'none';
+    }
+});
+
+// Add JavaScript for GML modal
+const gmlExplorarBtn = document.querySelector('.category-card:nth-child(3) .cta-button');
+const gmlModal = document.getElementById('gmlModal');
+const gmlCloseModal = gmlModal.querySelector('.close-modal');
+const gmlOptions = gmlModal.querySelectorAll('.rutina-option');
+
+// Show modal when clicking Explorar
+gmlExplorarBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    gmlModal.style.display = 'block';
+});
+
+// Close modal when clicking X
+gmlCloseModal.addEventListener('click', () => {
+    gmlModal.style.display = 'none';
+});
+
+// Handle option clicks
+gmlOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        const url = option.dataset.url;
+        window.location.href = url;
+    });
+});
+
+// Update the window click handler to include the new modal
+window.addEventListener('click', (e) => {
+    if (e.target === rutinasModal) {
+        rutinasModal.style.display = 'none';
+    }
+    if (e.target === sedeModal) {
+        sedeModal.style.display = 'none';
+    }
+    if (e.target === gmlModal) {
+        gmlModal.style.display = 'none';
+    }
+});
+</script></body></html>
